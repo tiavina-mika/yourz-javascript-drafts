@@ -19,3 +19,5 @@ export const COLORS = [
   { color: "#F32840" },
   { color: "#BCBCBC" }
 ];
+
+export const MENU_HEIGHT = 112;
