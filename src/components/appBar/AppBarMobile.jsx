@@ -8,7 +8,6 @@ import { Layout } from "antd";
 import PropTypes from "prop-types";
 
 import { MENU_HEIGHT, MENU_LINKS } from "../../utils/constants";
-import Button from "../Button";
 // import Icons from './Icons';
 import Menu from "./Menu";
 import Link from "../Link";
@@ -79,7 +78,14 @@ const AppBarMobile = ({ className }) => {
         </div>
       </div>
       <div className="flexRow alignCenter justifyEnd flex1">
-        <Button text="Télécharger l'app" type="default" />
+        <Link
+          type="button"
+          color="default"
+          href="/cv-tiavina-michael.pdf"
+          isNative
+        >
+          Télécharger mon CV
+        </Link>
       </div>
       {/* use array to avoid this issue: https://github.com/morellodev/react-awesome-reveal/issues/57 */}
       <div css={[open ? classes.menu : classes.menuCollapse]}>

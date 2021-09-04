@@ -23,11 +23,23 @@ const getTextColor = (theme, color) => {
 
 const classes = {
   button: ({ theme, color }) => ({
+    borderRadius: 15,
     padding: "12px 20px",
-    borderRadius: 4,
-    backgroundColor:
-      color === "primary" ? theme.colors.primary : theme.colors.secondary,
-    color: color === "primary" ? "#fff" : theme.colors.dark
+    backgroundColor: getTextColor(theme, color),
+    cursor: "pointer",
+    fontSize: 18,
+    color: theme.colors.primary,
+    fontStyle: "normal",
+    fontWeight: 800,
+    border: `1px solid ${theme.colors.primary}`,
+    "&:hover": {
+      border: `1px solid ${theme.colors.primary}`,
+      opacity: 0.8
+    },
+    "&:disabled": {
+      backgroundColor: "rgba(46, 46, 46, 0.16)",
+      color: "#fff"
+    }
   }),
   text: ({ theme, color }) => ({
     color: getTextColor(theme, color)
@@ -41,12 +53,16 @@ const Link = ({
   type = "link",
   color = "primary",
   onClick,
+  isNative = false,
   ...props
 }) => {
   const theme = useTheme();
 
+  const Component = isNative ? "a" : RouterLink;
+  const otherProps = isNative ? { href } : { to: href };
+
   return (
-    <RouterLink to={href} {...props} onClick={onClick} role="presentation">
+    <Component {...otherProps} {...props} onClick={onClick} role="presentation">
       <span
         css={
           type === "button"
@@ -57,7 +73,7 @@ const Link = ({
       >
         {children}
       </span>
-    </RouterLink>
+    </Component>
   );
 };
 
@@ -67,6 +83,7 @@ Link.propTypes = {
   type: PropTypes.oneOf(["link", "button"]),
   className: PropTypes.any,
   onClick: PropTypes.func,
+  isNative: PropTypes.func,
   color: PropTypes.oneOf(["primary", "secondary", "default"])
 };
 
