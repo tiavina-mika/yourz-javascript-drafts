@@ -20,4 +20,15 @@ export const COLORS = [
   { color: "#BCBCBC" }
 ];
 
+export const ROUTES = {
+  updateUserImageLayer: "/update-user-image-layer"
+};
+
+export const MENU_LINKS = [
+  {
+    text: "Mettre à jour l'image d'un calque user image",
+    href: ROUTES.updateUserImageLayer
+  }
+];
+
 export const MENU_HEIGHT = 112;

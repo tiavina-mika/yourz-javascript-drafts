@@ -1,7 +1,6 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "@emotion/react";
-import React from "react";
 
 import { css, cx } from "@emotion/css";
 import { Layout } from "antd";
@@ -11,27 +10,9 @@ import Button from "../Button";
 import { tabletDesktop } from "../Responsive";
 // import Icons from './Icons';
 import Menu from "./Menu";
+import { MENU_LINKS } from "../../utils/constants";
 
 const { Header } = Layout;
-
-export const MENU_LINKS = [
-  {
-    text: "Nos produits",
-    href: "/"
-  },
-  {
-    text: "Vos avantages",
-    href: "/"
-  },
-  {
-    text: "Comment ça marche?",
-    href: "/"
-  },
-  {
-    text: "Vos avis",
-    href: "/"
-  }
-];
 
 const classes = {
   appBar: (theme) => ({

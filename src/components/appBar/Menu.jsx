@@ -37,11 +37,16 @@ const classes = {
   }
 };
 
-const Menu = ({ links, menuActions, className, linkClassName }) => {
+const Menu = ({ links, menuActions, className, linkClassName, toggleMenu }) => {
   return (
     <ul css={classes.menu} className={cx("flexRow alignCenter", className)}>
       {links.map((link, index) => (
-        <li css={classes.menuItem} key={index}>
+        <li
+          css={classes.menuItem}
+          key={index}
+          onClick={toggleMenu}
+          role="presentation"
+        >
           <Link href={link.href} css={classes.link} className={linkClassName}>
             {link.text}
           </Link>
@@ -60,6 +65,7 @@ Menu.propTypes = {
     })
   ),
   menuActions: PropTypes.any,
+  toggleMenu: PropTypes.func,
   className: PropTypes.any,
   linkClassName: PropTypes.any
 };

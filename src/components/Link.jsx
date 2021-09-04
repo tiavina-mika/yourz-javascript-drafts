@@ -4,6 +4,22 @@ import { jsx } from "@emotion/react";
 import { cx } from "@emotion/css";
 import { useTheme } from "@emotion/react";
 import PropTypes from "prop-types";
+import { Link as RouterLink } from "react-router-dom";
+
+const getTextColor = (theme, color) => {
+  let defaultColor;
+  switch (color) {
+    case "secondary":
+      defaultColor = theme.colors.dark;
+      break;
+    case "default":
+      defaultColor = "#fff";
+      break;
+    default:
+      defaultColor = theme.colors.primary;
+  }
+  return defaultColor;
+};
 
 const classes = {
   button: ({ theme, color }) => ({
@@ -14,7 +30,7 @@ const classes = {
     color: color === "primary" ? "#fff" : theme.colors.dark
   }),
   text: ({ theme, color }) => ({
-    color: color === "primary" ? theme.colors.primary : theme.colors.dark
+    color: getTextColor(theme, color)
   })
 };
 
@@ -30,20 +46,18 @@ const Link = ({
   const theme = useTheme();
 
   return (
-    <a
-      href={href}
-      {...props}
-      css={
-        type === "button"
-          ? classes.button({ theme, color })
-          : classes.text({ theme, color })
-      }
-      className={cx(className, "link")}
-      onClick={onClick}
-      role="presentation"
-    >
-      {children}
-    </a>
+    <RouterLink to={href} {...props} onClick={onClick} role="presentation">
+      <span
+        css={
+          type === "button"
+            ? classes.button({ theme, color })
+            : classes.text({ theme, color })
+        }
+        className={cx(className, "link")}
+      >
+        {children}
+      </span>
+    </RouterLink>
   );
 };
 

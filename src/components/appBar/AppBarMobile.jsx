@@ -5,14 +5,13 @@ import { useState } from "react";
 
 import { cx } from "@emotion/css";
 import { Layout } from "antd";
-// import { useRouter } from 'next/router';
 import PropTypes from "prop-types";
 
-import { MENU_HEIGHT } from "../../utils/constants";
+import { MENU_HEIGHT, MENU_LINKS } from "../../utils/constants";
 import Button from "../Button";
-import { MENU_LINKS } from "./AppBar";
 // import Icons from './Icons';
 import Menu from "./Menu";
+import Link from "../Link";
 
 const { Header } = Layout;
 
@@ -62,8 +61,6 @@ const classes = {
 const AppBarMobile = ({ className }) => {
   const [open, setOpen] = useState(false);
 
-  const downloadButton = <Button text="Télécharger l'app" type="default" />;
-
   const toggleMenu = () => setOpen((prev) => !prev);
 
   return (
@@ -76,18 +73,21 @@ const AppBarMobile = ({ className }) => {
           <img alt="menu" src="/icons/humberger-menu.svg" />
         </button>
         <div css={classes.logo} className="flexCenter">
-          <img src="/logo.png" alt="logo yourz" width="84" height="32" />
+          <Link href="/" color="default">
+            Tiavina Mika
+          </Link>
         </div>
       </div>
-      {/* <div className="flexRow alignCenter justifyEnd flex1">
-        {isHomePage ? downloadButton : <Icons />}
-      </div> */}
+      <div className="flexRow alignCenter justifyEnd flex1">
+        <Button text="Télécharger l'app" type="default" />
+      </div>
       {/* use array to avoid this issue: https://github.com/morellodev/react-awesome-reveal/issues/57 */}
       <div css={[open ? classes.menu : classes.menuCollapse]}>
         <Menu
           links={MENU_LINKS}
           className="flexColumn flexStart"
           css={[open ? classes.menuItem : classes.menuItemCollapse]}
+          toggleMenu={toggleMenu}
         />
       </div>
     </Header>
