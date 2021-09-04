@@ -2,6 +2,7 @@
 /* @jsx jsx */
 import { jsx } from "@emotion/react";
 import Bloc from "./components/Bloc";
+import Layout from "./components/Layout";
 
 // ------------------------------- //
 // ------------ template --------- //
@@ -72,32 +73,34 @@ const updateSelectedTemplate = ({ selectedTemplate, selectedLayer, file }) => {
 // --------------------------- //
 const Demo = () => {
   return (
-    <div className="flexCenter">
-      <Bloc
-        title="Description"
-        description="Update a level 1 or level 2 userImage layer.
-        Select a layer, then update its file to a new selected one."
-      />
-      <Bloc title="Template" src={template} />
-      <Bloc
-        title="Selected Layer"
-        description="Layer to update"
-        src={selectedLayer}
-      />
-      <Bloc
-        title="Selected File"
-        description="File to insert to the selected layer"
-        src={newFile}
-      />
-      <Bloc
-        title="Output"
-        src={updateSelectedTemplate({
-          selectedLayer,
-          file: newFile,
-          selectedTemplate: template
-        })}
-      />
-    </div>
+    <Layout>
+      <div className="flexCenter">
+        <Bloc
+          title="Description"
+          description="Update a level 1 or level 2 userImage layer.
+          Select a layer, then update its file to a new selected one."
+        />
+        <Bloc title="Template" src={template} />
+        <Bloc
+          title="Selected Layer"
+          description="Layer to update"
+          src={selectedLayer}
+        />
+        <Bloc
+          title="Selected File"
+          description="File to insert to the selected layer"
+          src={newFile}
+        />
+        <Bloc
+          title="Output"
+          src={updateSelectedTemplate({
+            selectedLayer,
+            file: newFile,
+            selectedTemplate: template
+          })}
+        />
+      </div>
+    </Layout>
   );
 };
 

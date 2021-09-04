@@ -1,3 +1,6 @@
+/** @jsxRuntime classic /
+/* @jsx jsx */
+import { jsx } from "@emotion/react";
 import { cx } from "@emotion/css";
 import { Typography as AntdTypography } from "antd";
 import PropTypes from "prop-types";
