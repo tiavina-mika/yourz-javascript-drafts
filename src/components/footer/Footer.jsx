@@ -1,3 +1,6 @@
+/** @jsxRuntime classic /
+/* @jsx jsx */
+import { jsx } from "@emotion/react";
 import { Col, Layout, Row } from "antd";
 // import Image from 'next/image';
 
@@ -10,31 +13,18 @@ const { Footer: AntdFooter } = Layout;
 
 const footerItems = [
   {
-    title: "A propos",
-    items: [
-      {
-        href: "/",
-        text: "Politique de confidentialité"
-      },
-      {
-        href: "/",
-        text: "Conditions générales"
-      }
-    ]
-  },
-  {
     title: "Contact",
     items: [
       {
-        text: "contact@yourz.me"
+        text: "tiavinamika@gmail.com"
       }
     ]
   },
   {
-    title: "Coovz",
+    title: "Adresse",
     items: [
       {
-        text: "83, Avenue Aristide Briand - Lot 10 93240 Stainse"
+        text: "Lot VN 50B Ambohitsoa, Antananarivo, Madagascar"
       }
     ]
   }
@@ -139,15 +129,12 @@ const Footer = () => (
         {/* ------------- top left  ------------- */}
         <div css={classes.topLeft}>
           <div>
-            <img
-              src="/logo-dark.png"
-              alt="logo yourz"
-              width="147"
-              height="56"
-            />
+            <Typography variant="title">Tiavina Mika</Typography>
           </div>
           <div css={classes.stories}>
-            <Typography theme="lightDark">Your stories X Your Style</Typography>
+            <Typography theme="lightDark">
+              "Confidence is acquired through preparation and hard work"
+            </Typography>
           </div>
           {/* <MobileDownloadLinks className={classes.mobileDownloadLinks} /> */}
         </div>
@@ -192,7 +179,7 @@ const Footer = () => (
         {/* ------------- bottom left ------------- */}
         <div>
           <Typography theme="lightDark">
-            © {new Date().getFullYear()} Coovz. Tous droits réservés.
+            © {new Date().getFullYear()} by Tiavina Micahel R.
           </Typography>
         </div>
         {/* ------------- bottom right ------------- */}
