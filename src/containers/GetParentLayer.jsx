@@ -32,11 +32,9 @@ const selectedLayer = {
 };
 
 /**
- * update the template with new updated layers
+ * get the selected layer with its mask layer parent
  */
-const getLayerWithMask = ({ selectedTemplate, selectedLayer }) => {
-  const template = { ...selectedTemplate };
-
+const getLayerWithMask = (template, selectedLayer) => {
   let newLayer;
 
   for (const layer of template.layers) {
@@ -76,13 +74,7 @@ const GetParentLayer = () => {
         description="Layer to update"
         src={selectedLayer}
       />
-      <Bloc
-        title="Output"
-        src={getLayerWithMask({
-          selectedLayer,
-          selectedTemplate: template
-        })}
-      />
+      <Bloc title="Output" src={getLayerWithMask(template, selectedLayer)} />
     </div>
   );
 };
