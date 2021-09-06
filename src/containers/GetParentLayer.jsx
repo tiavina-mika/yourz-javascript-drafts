@@ -48,10 +48,8 @@ const getLayerWithMask = (template, selectedLayer) => {
           };
         }
       }
-    } else {
-      if (layer.id === selectedLayer.id) {
-        newLayer = { userImageLayer: selectedLayer };
-      }
+    } else if (layer.id === selectedLayer.id) {
+      newLayer = { userImageLayer: selectedLayer };
     }
   }
 
