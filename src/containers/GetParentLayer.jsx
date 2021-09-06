@@ -34,22 +34,18 @@ const selectedLayer = {
 /**
  * get the selected layer with its mask layer parent
  */
-const getLayerWithMask = (template, selectedLayer) => {
+const getLayerMask = (template, selectedLayer) => {
   let newLayer;
 
   for (const layer of template.layers) {
     if (layer.type === "mask" && layer.layers) {
       for (const subLayer of layer.layers) {
         if (subLayer.id === selectedLayer.id) {
-          delete layer.layers;
           newLayer = {
-            maskLayer: layer,
-            userImageLayer: selectedLayer
+            ...layer
           };
         }
       }
-    } else if (layer.id === selectedLayer.id) {
-      newLayer = { userImageLayer: selectedLayer };
     }
   }
 
@@ -72,7 +68,7 @@ const GetParentLayer = () => {
         description="Layer to update"
         src={selectedLayer}
       />
-      <Bloc title="Output" src={getLayerWithMask(template, selectedLayer)} />
+      <Bloc title="Output" src={getLayerMask(template, selectedLayer)} />
     </div>
   );
 };
