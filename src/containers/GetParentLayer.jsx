@@ -31,52 +31,44 @@ const selectedLayer = {
   file: { file: "/ui11.jpg" }
 };
 
-// new file to insert
-const newFile = { file: "/anomalie.jpeg" };
-
 /**
  * update the template with new updated layers
  */
-const updateSelectedTemplate = ({ selectedTemplate, selectedLayer, file }) => {
+const getLayerWithMask = ({ selectedTemplate, selectedLayer }) => {
   const template = { ...selectedTemplate };
 
-  let newTemplateLayers = [];
-  for (const layer of template.layers) {
-    const newLayers = [];
+  let newLayer;
 
-    if (layer.type === "mask") {
-      const newSubLayers = [];
+  for (const layer of template.layers) {
+    if (layer.type === "mask" && layer.layers) {
       for (const subLayer of layer.layers) {
         if (subLayer.id === selectedLayer.id) {
-          newSubLayers.push({ ...selectedLayer, file });
-        } else {
-          newSubLayers.push(subLayer);
+          delete layer.layers;
+          newLayer = {
+            maskLayer: layer,
+            userImageLayer: selectedLayer
+          };
         }
       }
-      newLayers.push({ ...layer, layers: newSubLayers });
     } else {
       if (layer.id === selectedLayer.id) {
-        newLayers.push({ ...selectedLayer, file });
-      } else {
-        newLayers.push(layer);
+        newLayer = { userImageLayer: selectedLayer };
       }
     }
-    newTemplateLayers.push(newLayers);
   }
 
-  return { ...template, layers: newTemplateLayers.flat() };
+  return newLayer;
 };
 
 // --------------------------- //
 // -------- component -------- //
 // --------------------------- //
-const UpdateUserImageLayer = () => {
+const GetParentLayer = () => {
   return (
     <div className="flexCenter">
       <Bloc
         title="Description"
-        description="Update a level 1 or level 2 userImage layer.
-          Select a layer, then update its file to a new selected one."
+        description="If the selected layer is a level 2 layer, get its layer parent with the current selected children."
       />
       <Bloc title="Template" src={template} />
       <Bloc
@@ -85,15 +77,9 @@ const UpdateUserImageLayer = () => {
         src={selectedLayer}
       />
       <Bloc
-        title="Selected File"
-        description="File to insert to the selected layer"
-        src={newFile}
-      />
-      <Bloc
         title="Output"
-        src={updateSelectedTemplate({
+        src={getLayerWithMask({
           selectedLayer,
-          file: newFile,
           selectedTemplate: template
         })}
       />
@@ -101,4 +87,4 @@ const UpdateUserImageLayer = () => {
   );
 };
 
-export default UpdateUserImageLayer;
+export default GetParentLayer;

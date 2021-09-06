@@ -83,7 +83,7 @@ Link.propTypes = {
   type: PropTypes.oneOf(["link", "button"]),
   className: PropTypes.any,
   onClick: PropTypes.func,
-  isNative: PropTypes.func,
+  isNative: PropTypes.bool,
   color: PropTypes.oneOf(["primary", "secondary", "default"])
 };
 
