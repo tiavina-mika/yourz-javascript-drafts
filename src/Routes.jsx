@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
+import CreateMontage from "./containers/createMontage";
 import GetParentLayer from "./containers/GetParentLayer";
 
 import UpdateUserImageLayer from "./containers/UpdateUserImageLayer";
@@ -11,11 +12,14 @@ const Routes = () => {
     <Router>
       <Switch>
         <MainRoute path="/" exact>
-          <GetParentLayer />
+          <CreateMontage />
         </MainRoute>
         {/* <MainRoute path="/" exact>
           <UpdateUserImageLayer />
         </MainRoute> */}
+        <MainRoute path={ROUTES.getParentLayer} exact>
+          <GetParentLayer />
+        </MainRoute>
         <MainRoute path={ROUTES.updateUserImageLayer} exact>
           <UpdateUserImageLayer />
         </MainRoute>
