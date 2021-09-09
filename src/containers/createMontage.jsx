@@ -3,10 +3,16 @@
 import { jsx } from "@emotion/react";
 import Bloc from "../components/Bloc";
 
+// const files = [
+//   { id: "f1", file: "f1.jpg", imageId: "imageId1" },
+//   { id: "f2", file: "f2.jpg", imageId: "imageId2" },
+//   { id: "f3", file: "f3.jpg", imageId: "imageId3" }
+// ];
+
 const files = [
-  { id: "f1", file: "f1.jpg", imageId: "imageId1" },
-  { id: "f2", file: "f2.jpg", imageId: "imageId2" },
-  { id: "f3", file: "f3.jpg", imageId: "imageId3" }
+  { id: "f1", file: "f1.jpg" },
+  { id: "f2", file: "f2.jpg" },
+  { id: "f3", file: "f3.jpg" }
 ];
 
 // ------------------------------- //
@@ -38,6 +44,7 @@ const template = {
       ]
     },
     { id: "i2", type: "image" },
+    { id: "ut2", type: "userText", text: "coool2", color: "#000" },
     {
       id: "ui12",
       type: "userImage",
@@ -49,9 +56,24 @@ const template = {
 };
 
 /**
+ * simulate file upload
+ * @param {*} files
+ */
+const uploadImages = (files) => {
+  const newFiles = [];
+  // simulate ajax request for image upload
+  // the request return a image Id
+  for (const file of files) {
+    newFiles.push({ ...file, imageId: "imageId_" + file.id });
+  }
+  return newFiles;
+};
+
+/**
  * create montage by template
  */
-const createMontage = (template, files) => {
+const createMontage = (template, uploadedFiles) => {
+  const files = uploadImages(uploadedFiles);
   const fileById = new Map();
 
   files.forEach((file) => {
@@ -105,6 +127,8 @@ const CreateMontage = () => {
         description="Créer un montage à partir d'un template et d'image."
       />
       <Bloc title="Template" src={template} />
+      <Bloc title="Files to upload" src={files} />
+      <Bloc title="Uploaded files" src={uploadImages(files)} />
 
       <Bloc title="Output" src={createMontage(template, files)} />
     </div>
