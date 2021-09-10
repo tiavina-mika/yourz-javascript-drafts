@@ -1,5 +1,6 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
+import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
 import { Modal as AntdModal } from "antd";
 import PropTypes from "prop-types";
@@ -31,7 +32,7 @@ const classes = {
     color: "grey",
     border: "1px solid " + theme.colors.dark
   }),
-  content: {
+  description: {
     fontSize: "18px !important"
   }
 };
@@ -45,7 +46,11 @@ const Modal = ({
   width = 390,
   className,
   content,
-  buttonCancelText = "Annuler"
+  buttonCancelText = "Annuler",
+  disabled = false,
+  contentAlignment = "left",
+  description,
+  contentClassName
 }) => {
   return (
     <AntdModal
@@ -74,44 +79,52 @@ const Modal = ({
             htmlType="button"
             type="primary"
             fullWidth
+            disabled={disabled}
           />
-          <Button
-            text={buttonCancelText}
-            onClick={onCancel}
-            htmlType="button"
-            css={classes.cancelButton}
-            fullWidth
-            type="default"
-          />
+          {onCancel && (
+            <Button
+              text={buttonCancelText}
+              onClick={onCancel}
+              htmlType="button"
+              css={classes.cancelButton}
+              fullWidth
+              type="default"
+            />
+          )}
         </div>
       }
     >
-      {typeof content === "string" ? (
+      {description && (
         <Typography
           // gutterBottom={false}
           variant="paragraph"
-          alignment="center"
-          css={classes.content}
+          alignment={contentAlignment}
+          css={classes.description}
         >
-          {content}
+          {description}
         </Typography>
-      ) : (
-        content
+      )}
+      {content && (
+        <div className={cx("flexCenter", contentClassName)}>{content}</div>
       )}
     </AntdModal>
   );
 };
 
 Modal.propTypes = {
+  contentAlignment: PropTypes.oneOf(["center", "left", "right"]),
   title: PropTypes.string,
   onOk: PropTypes.func,
   onCancel: PropTypes.func,
   className: PropTypes.any,
+  contentClassName: PropTypes.any,
   open: PropTypes.bool,
   width: PropTypes.number,
   content: PropTypes.any,
+  description: PropTypes.string,
   buttonOkText: PropTypes.string,
-  buttonCancelText: PropTypes.string
+  buttonCancelText: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 export default Modal;

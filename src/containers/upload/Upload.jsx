@@ -13,13 +13,16 @@ const classes = {
 const Upload = () => {
   const [files, setFiles] = useState();
 
-  const [visible, setVisible] = useState(false);
+  const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
+  const [openProgressDialog, setOpenProgressDialog] = useState(false);
 
-  const toggle = () => setVisible((prev) => !prev);
+  const toggleConfirmationDialog = () =>
+    setOpenConfirmationDialog((prev) => !prev);
+  const toggleProgressDialog = () => setOpenProgressDialog((prev) => !prev);
 
   const onConfirm = () => {
-    console.log(files);
-    toggle();
+    toggleConfirmationDialog();
+    toggleProgressDialog();
   };
 
   const handleFilesChange = (selectedFiles) => {
@@ -30,17 +33,28 @@ const Upload = () => {
     <div className="flexRow justifyCenter" css={classes.upload}>
       <UploadInput maxCount={1} onChangeFiles={handleFilesChange} />
       <div className="m-y-20">
-        <div className="flexCenter" onClick={() => setVisible(true)}>
+        <div className="flexCenter" onClick={toggleConfirmationDialog}>
           <Button text="Confimer" />
         </div>
         <Modal
-          open={visible}
+          open={openConfirmationDialog}
           title="Tout est bon ?"
-          content="Pensez à bien vérifier vos photos et à les recadrer si besoin"
+          description="Pensez à bien vérifier vos photos et à les recadrer si besoin"
           buttonOkText="C'est tout bon !"
           buttonCancelText="Je vérifie"
-          onCancel={toggle}
+          onCancel={toggleConfirmationDialog}
           onOk={onConfirm}
+        />
+        <Modal
+          open={openProgressDialog}
+          title="Faîtes vous plaisir"
+          description="Vos photos sont en train d'être téléchargées. Cela peut prendre quelques minutes..."
+          buttonOkText="Continuer vers le pariner"
+          buttonCancelText="Je vérifie"
+          // onOk={onUpload}
+          contentAlignment="left"
+          disabled
+          width={450}
         />
       </div>
     </div>

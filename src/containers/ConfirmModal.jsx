@@ -24,7 +24,7 @@ const ConfirmModal = () => {
       <Modal
         open={visible}
         title="Tout est bon ?"
-        content="Pensez à bien vérifier vos photos et à les recadrer si besoin"
+        description="Pensez à bien vérifier vos photos et à les recadrer si besoin"
         buttonOkText="C'est tout bon !"
         buttonCancelText="Je vérifie"
         onCancel={toggle}
