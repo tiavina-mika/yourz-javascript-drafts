@@ -14,21 +14,22 @@ const Routes = () => {
     <Router>
       <Switch>
         <MainRoute path="/" exact>
+          {/* <MainRoute path={ROUTES.createMontage} exact> */}
+          <CreateMontage />
+        </MainRoute>
+        <MainRoute path={ROUTES.upload} exact>
           <Upload />
         </MainRoute>
         <MainRoute path={ROUTES.confirmModal} exact>
           <ConfirmModal />
         </MainRoute>
-        <MainRoute path={ROUTES.createMontage} exact>
-          <CreateMontage />
-        </MainRoute>
         {/* <MainRoute path="/" exact>
           <UpdateUserImageLayer />
         </MainRoute> */}
-        <MainRoute path={ROUTES.getParentLayer} exact>
+        <MainRoute path={ROUTES.getParentLayer}>
           <GetParentLayer />
         </MainRoute>
-        <MainRoute path={ROUTES.updateUserImageLayer} exact>
+        <MainRoute path={ROUTES.updateUserImageLayer}>
           <UpdateUserImageLayer />
         </MainRoute>
       </Switch>

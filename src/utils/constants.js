@@ -30,6 +30,10 @@ export const MENU_LINKS = [
   {
     text: "Mettre à jour l'image d'un calque user image",
     href: ROUTES.updateUserImageLayer
+  },
+  {
+    text: "Créer un montage à partir d'un template et des images",
+    href: ROUTES.createMontage
   }
 ];
 

@@ -6,7 +6,7 @@ import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import ProgressBar from "../../components/ProgressBar";
 import UploadInput from "./UploadInput";
-import { uploadImage } from "../../actions/images";
+import { uploadImages } from "../../actions/images";
 import Typography from "../../components/Typography";
 
 const classes = {
@@ -31,17 +31,11 @@ const Upload = () => {
 
   const uploadFile = async () => {
     try {
-      const newFiles = [];
-      for (const file of files) {
-        const data = await uploadImage(
-          file.file.originFileObj,
-          setPercentage,
-          files.length - 1
-        );
-
-        setCountFilesUploaded((prev) => prev + 1);
-        newFiles.push({ imageId: data, ...file });
-      }
+      const newFiles = await uploadImages(
+        files,
+        setPercentage,
+        setCountFilesUploaded
+      );
 
       setFiles(newFiles);
       toggleProgressDialog();

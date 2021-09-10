@@ -39,6 +39,27 @@ export const uploadImage = async (
   return data;
 };
 
+export const uploadImages = async (
+  files,
+  setPercentage,
+  setCountFilesUploaded
+) => {
+  const newFiles = [];
+  for (const file of files) {
+    const data = await uploadImage(
+      file.file.originFileObj,
+      setPercentage,
+      files.length - 1
+    );
+
+    setCountFilesUploaded((prev) => prev + 1);
+    newFiles.push({ imageId: data, ...file });
+    setPercentage(0);
+  }
+
+  return newFiles;
+};
+
 /**
  * upload image
  * @returns {Object}
