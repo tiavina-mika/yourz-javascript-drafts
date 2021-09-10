@@ -1,3 +1,15 @@
+/**
+ * show this message if uploaded files number is lower than the required number
+ * @param {number} max
+ * @param {number} count
+ * @returns {string}
+ */
+export const getImageUploadCountMessage = (max, count) => {
+  const photoCount = max - count;
+  const message = "Sélectionnez encore " + photoCount + " photo";
+  return message + (photoCount > 1 ? "s" : "");
+};
+
 // to capitalize only first letter
 export const capitalizeFirstLetter = (string) => {
   if (

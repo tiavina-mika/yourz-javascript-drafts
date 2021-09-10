@@ -7,12 +7,16 @@ import ConfirmModal from "./containers/ConfirmModal";
 import UpdateUserImageLayer from "./containers/UpdateUserImageLayer";
 import MainRoute from "./MainRoute";
 import { ROUTES } from "./utils/constants";
+import Upload from "./containers/upload/Upload";
 
 const Routes = () => {
   return (
     <Router>
       <Switch>
         <MainRoute path="/" exact>
+          <Upload />
+        </MainRoute>
+        <MainRoute path={ROUTES.confirmModal} exact>
           <ConfirmModal />
         </MainRoute>
         <MainRoute path={ROUTES.createMontage} exact>
