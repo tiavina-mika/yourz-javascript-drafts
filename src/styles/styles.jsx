@@ -10,6 +10,91 @@ export const mq = facepaint(
 );
 
 const getGlobalStyles = () => css`
+  @font-face {
+    font-family: "Mont";
+    src: url("/fonts/Mont/Mont-Regular.otf");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  /* @font-face {
+        font-family: "Mont";
+        src: url("/fonts/Mont/Mont-Medium.otf");
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+      } */
+  @font-face {
+    font-family: "Mont";
+    src: url("/fonts/Mont/Mont-SemiBold.otf");
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Mont";
+    src: url("/fonts/Mont/Mont-Bold.otf");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Mont";
+    src: url("/fonts/Mont/Mont-Heavy.otf");
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "AmaticSC";
+    src: url("/fonts/AmaticSC-Bold.ttf");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Courgette";
+    src: url("/fonts/Courgette-Regular.ttf");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "DelaGothicOne";
+    src: url("/fonts/DelaGothicOne-Regular.ttf");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Neucha";
+    src: url("/fonts/Neucha-Regular.ttf");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Parisienne";
+    src: url("/fonts/Parisienne-Regular.ttf");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "PlayfairDisplay";
+    src: url("/fonts/PlayfairDisplay-Regular.ttf");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/Montserrat-Medium.ttf");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+  }
+
   html,
   body {
     background: #f2f2f2;
@@ -44,11 +129,20 @@ const getGlobalStyles = () => css`
     text-decoration: underline;
   }
 
+  .initialButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .initialButton:hover {
+    opacity: 0.8;
+  }
   .button {
     border-radius: 15px;
-    padding: 25px 26px;
+    padding: 24px 31px 27px 31px;
     cursor: pointer;
     border: 1px solid ${theme.colors.primary};
+    line-height: 1;
   }
   .button:focus {
     border: 1px solid ${theme.colors.primary};
@@ -118,6 +212,10 @@ const getGlobalStyles = () => css`
   }
   .default {
     color: #000 !important;
+  }
+  .initialFlex {
+    align-self: normal !important;
+    flex: none !important;
   }
   .flexRow {
     display: flex;
@@ -206,6 +304,9 @@ const getGlobalStyles = () => css`
   .textLeft {
     text-align: left;
   }
+  .textRight {
+    text-align: right;
+  }
   .errorColor {
     color: #ec554f;
   }
@@ -253,8 +354,7 @@ const getGlobalStyles = () => css`
     float: right;
   }
   .fullWidth {
-    flex: 1;
-    align-self: stretch;
+    width: 100%;
   }
   .hidden {
     opacity: 0;
@@ -548,4 +648,4 @@ const getGlobalStyles = () => css`
   }
 `;
 
-export const globalStyles = <Global styles={getGlobalStyles()} />;
+export const GlobalStyles = () => <Global styles={getGlobalStyles()} />;

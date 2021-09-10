@@ -1,3 +1,29 @@
+// to capitalize only first letter
+export const capitalizeFirstLetter = (string) => {
+  if (
+    !string ||
+    typeof string !== "string" ||
+    (string && string.trim().length === 0)
+  )
+    return "";
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+// to capitalize all first letter of each word
+export const capitalizeCase = (string) => {
+  if (!string) {
+    return "";
+  }
+  string = string.trim(); // important
+  if (!string.length) {
+    return "";
+  }
+  return string
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word[0].toUpperCase() + word.substr(1))
+    .join(" ");
+};
 // ----------------------------------------- //
 // ------------- images upload ------------- //
 // ----------------------------------------- //

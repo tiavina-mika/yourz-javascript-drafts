@@ -21,7 +21,8 @@ export const COLORS = [
 ];
 
 export const ROUTES = {
-  updateUserImageLayer: "/update-user-image-layer"
+  updateUserImageLayer: "/update-user-image-layer",
+  createMontage: "/create-montage"
 };
 
 export const MENU_LINKS = [
