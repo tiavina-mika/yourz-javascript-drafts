@@ -12,7 +12,7 @@ const classes = {
   modal: {
     "& .ant-modal-content": {
       borderRadius: 20,
-      padding: "20px 20px"
+      padding: "20px 30px 30px 30px"
     },
 
     "& .ant-modal-footer, .ant-modal-header": {
@@ -20,8 +20,7 @@ const classes = {
       padding: 0
     },
     "& .ant-modal-body": {
-      paddingTop: 15,
-      paddingBottom: 20
+      padding: "15px 0 20px 0"
     },
     "& .ant-modal-close-x": {
       display: "none"
@@ -34,6 +33,10 @@ const classes = {
   }),
   description: {
     fontSize: "18px !important"
+  },
+  content: {
+    marginTop: 25,
+    marginBottom: 10
   }
 };
 
@@ -96,7 +99,7 @@ const Modal = ({
     >
       {description && (
         <Typography
-          // gutterBottom={false}
+          gutterBottom={false}
           variant="paragraph"
           alignment={contentAlignment}
           css={classes.description}
@@ -105,7 +108,12 @@ const Modal = ({
         </Typography>
       )}
       {content && (
-        <div className={cx("flexCenter", contentClassName)}>{content}</div>
+        <div
+          css={classes.content}
+          className={cx("flexCenter", contentClassName)}
+        >
+          {content}
+        </div>
       )}
     </AntdModal>
   );

@@ -4,6 +4,7 @@ import { jsx } from "@emotion/react";
 import { useState } from "react";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
+import ProgressBar from "../../components/ProgressBar";
 import UploadInput from "./UploadInput";
 
 const classes = {
@@ -47,6 +48,7 @@ const Upload = () => {
         />
         <Modal
           open={openProgressDialog}
+          content={<ProgressBar percent={80} />}
           title="Faîtes vous plaisir"
           description="Vos photos sont en train d'être téléchargées. Cela peut prendre quelques minutes..."
           buttonOkText="Continuer vers le pariner"
