@@ -18,7 +18,7 @@ const Upload = () => {
   const toggle = () => setVisible((prev) => !prev);
 
   const onConfirm = () => {
-    console.log("confirmed !");
+    console.log(files);
     toggle();
   };
 
