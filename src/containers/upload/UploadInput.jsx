@@ -37,10 +37,7 @@ const classes = {
   },
   button: {
     marginTop: 26
-  },
-  imagesChecked: css({
-    pointerEvents: "none"
-  })
+  }
 };
 
 const label =
@@ -114,10 +111,7 @@ const UploadInput = ({ maxCount = 1, onChangeFiles }) => {
           ) : (
             // show images with a message with remaining images required
             <div className="flexCenter">
-              <DisplayInputImages
-                files={files}
-                className={classes.imagesChecked}
-              />
+              <DisplayInputImages files={files} />
               {info && <Typography>{info}</Typography>}
             </div>
           )}

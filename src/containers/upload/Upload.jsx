@@ -29,9 +29,9 @@ const Upload = () => {
   return (
     <div className="flexRow justifyCenter" css={classes.upload}>
       <UploadInput maxCount={1} onChangeFiles={handleFilesChange} />
-      <div>
+      <div className="m-y-20">
         <div className="flexCenter" onClick={() => setVisible(true)}>
-          <Button text="UPload" />
+          <Button text="Confimer" />
         </div>
         <Modal
           open={visible}

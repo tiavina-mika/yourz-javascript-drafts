@@ -8,8 +8,6 @@ import { mq } from "../../styles/styles";
 const classes = {
   upload: ({ error, filesCount }) => (theme) =>
     mq({
-      marginTop: 90,
-      marginBottom: 228,
       background: error ? theme.colors.errorSecondary : "#E7FDEF",
       border: `2px dashed ${error ? theme.colors.errorPrimary : "#4752D8"}`,
       boxSizing: "border-box",
