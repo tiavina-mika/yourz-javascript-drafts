@@ -91,7 +91,7 @@ const createMontage = (template, uploadedFiles) => {
           id: layer.id,
           type: layer.type,
           imageHeight: layer.height,
-          imageWidth: layer.height,
+          imageWidth: layer.width,
           imageId: file.imageId
         };
         montageLayers.push(newLayer);
