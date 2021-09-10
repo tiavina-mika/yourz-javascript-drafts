@@ -4,7 +4,7 @@ import { jsx } from "@emotion/react";
 import PropTypes from "prop-types";
 
 const classes = {
-  imageContainer: {
+  imagesContainer: {
     width: 177,
     height: 120,
     left: 449,
@@ -14,6 +14,11 @@ const classes = {
     borderRadius: 15,
     overflow: "hidden",
     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"
+  },
+  imgContainer: {
+    objectFit: "cover",
+    width: 177,
+    height: 120
   },
   img: {
     width: "100%"
@@ -25,15 +30,11 @@ const DisplayInputImages = ({ files }) => {
   return (
     <div className="flexRow justifyCenter" css={classes.checkboxes}>
       {files.map((file, index) => (
-        <div css={classes.imageContainer} key={index}>
+        <div css={classes.imagesContainer} key={index}>
           {file.url && (
-            <img
-              src={file.url}
-              alt="miniature"
-              width={177}
-              height={120}
-              objectFit="cover"
-            />
+            <div css={classes.imgContainer}>
+              <img src={file.url} alt="miniature" css={classes.img} />
+            </div>
           )}
         </div>
       ))}

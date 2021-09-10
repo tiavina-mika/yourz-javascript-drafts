@@ -106,7 +106,7 @@ const UploadInput = ({ maxCount = 1, onChangeFiles }) => {
     >
       <UploadField error={error} filesCount={files.length}>
         <div css={!info && classes.content} className="flexCenter">
-          {!info ? (
+          {info || error || files.length < 1 ? (
             <Typography css={classes.text}>{info || error || label}</Typography>
           ) : (
             // show images with a message with remaining images required
