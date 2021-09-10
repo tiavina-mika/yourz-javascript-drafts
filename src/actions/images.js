@@ -4,13 +4,16 @@ import axios from "axios";
  * upload image
  * @returns {Object}
  */
-export const uploadImage = async (file, userId = "uidxxx") => {
+export const uploadImage = async (
+  file,
+  setPercentage,
+  countFiles,
+  userId = "uidxxx"
+) => {
   const formData = new FormData();
   formData.append("image", file);
   // formData.append("type", "userImage");
   // formData.append("userId", userId);
-
-  let progressPercent;
 
   const options = {
     onUploadProgress: (progressEvent) => {
@@ -18,7 +21,7 @@ export const uploadImage = async (file, userId = "uidxxx") => {
       const percent = Math.floor((loaded * 100) / total);
 
       if (percent <= 100) {
-        progressPercent = percent;
+        setPercentage(percent / countFiles);
       }
     }
   };
@@ -33,7 +36,7 @@ export const uploadImage = async (file, userId = "uidxxx") => {
     throw new Error("No image id");
   }
 
-  return { data, progressPercent };
+  return data;
 };
 
 /**

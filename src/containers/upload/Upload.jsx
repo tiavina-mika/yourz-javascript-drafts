@@ -32,33 +32,26 @@ const Upload = () => {
   const uploadFile = async () => {
     try {
       const newFiles = [];
-      let totalPercentage = 0;
-      let filesUploaded = 0;
-      // let newPercent =
       for (const file of files) {
-        const { data, progressPercent } = await uploadImage(
-          file.file.originFileObj
+        const data = await uploadImage(
+          file.file.originFileObj,
+          setPercentage,
+          files.length - 1
         );
-        // setPercentage(progressPercent);
-        totalPercentage = progressPercent;
-        filesUploaded++;
-        newFiles.push({ ...files, data });
-      }
-      totalPercentage = (files.length - 1) * totalPercentage;
-      setPercentage(totalPercentage);
-      setCountFilesUploaded(filesUploaded);
 
-      // console.log('newFiles', newFiles)
+        setCountFilesUploaded((prev) => prev + 1);
+        newFiles.push({ imageId: data, ...file });
+      }
+
       setFiles(newFiles);
-      // await uploadFile(formData, setPercentage);
-      // setPercentage(0);
+      toggleProgressDialog();
     } catch (err) {
       console.log("error", err.response);
       setPercentage(0);
     }
   };
 
-  console.log("files", files);
+  // console.log("files", files);
 
   const onConfirm = () => {
     toggleConfirmationDialog();
