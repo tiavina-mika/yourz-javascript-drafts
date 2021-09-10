@@ -30,6 +30,9 @@ const classes = {
   content: {
     width: 335
   },
+  contentFullWidth: {
+    width: "100%"
+  },
   text: {
     color: "#676C75 !important",
     fontSize: "18px !important",
@@ -105,17 +108,26 @@ const UploadInput = ({ maxCount = 1, onChangeFiles }) => {
       maxCount={maxCount}
     >
       <UploadField error={error} filesCount={files.length}>
-        <div css={!info && classes.content} className="flexCenter">
+        <div
+          css={
+            !info && files.length <= 0
+              ? classes.content
+              : classes.contentFullWidth
+          }
+          className="flexCenter flex1"
+        >
           {info || error || files.length < 1 ? (
             <Typography css={classes.text}>{info || error || label}</Typography>
           ) : (
             // show images with a message with remaining images required
-            <div className="flexCenter">
+            <div className="flexCenter stretchSelf flex1">
               <DisplayInputImages files={files} />
               {info && <Typography>{info}</Typography>}
             </div>
           )}
-          <Button text="Accéder à vos photos" css={classes.button} />
+          {(files.length < maxCount || info) && (
+            <Button text="Accéder à vos photos" css={classes.button} />
+          )}
         </div>
       </UploadField>
     </Dragger>
