@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
-import CreateMontage from "./containers/createMontage";
+import CreateMontage from "./containers/CreateMontage";
 import GetParentLayer from "./containers/GetParentLayer";
 import ConfirmModal from "./containers/ConfirmModal";
 

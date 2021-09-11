@@ -10,12 +10,14 @@ import Footer from "./components/footer/Footer";
 
 const { Content } = AntdLayout;
 
-const MainRoute = ({ children, ...rest }) => {
+const MainRoute = ({ children, path, ...rest }) => {
   return (
-    <Route {...rest}>
+    <Route path={path} {...rest}>
       <AntdLayout className="minHeight100">
         <AppBarMobile />
-        <Content style={{ background: "#fff" }}>{children}</Content>
+        <Content style={{ background: "#fff" }} className="p-y-20">
+          {children}
+        </Content>
         <Footer />
       </AntdLayout>
     </Route>
@@ -23,7 +25,8 @@ const MainRoute = ({ children, ...rest }) => {
 };
 
 MainRoute.propTypes = {
-  component: PropTypes.any
+  children: PropTypes.node,
+  path: PropTypes.string
   // rest: PropTypes.any
 };
 
