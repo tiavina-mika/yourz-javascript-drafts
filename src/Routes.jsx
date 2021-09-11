@@ -8,13 +8,16 @@ import UpdateUserImageLayer from "./containers/UpdateUserImageLayer";
 import MainRoute from "./MainRoute";
 import { ROUTES } from "./utils/constants";
 import Upload from "./containers/upload/Upload";
+import Home from "./containers/Home";
 
 const Routes = () => {
   return (
     <Router>
       <Switch>
         <MainRoute path="/" exact>
-          {/* <MainRoute path={ROUTES.createMontage} exact> */}
+          <Home />
+        </MainRoute>
+        <MainRoute path={ROUTES.createMontage} exact>
           <CreateMontage />
         </MainRoute>
         <MainRoute path={ROUTES.upload} exact>

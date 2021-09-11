@@ -23,7 +23,8 @@ export const COLORS = [
 export const ROUTES = {
   updateUserImageLayer: "/update-user-image-layer",
   createMontage: "/create-montage",
-  upload: "/upload"
+  upload: "/upload",
+  confirmModal: "/confirm modal"
 };
 
 export const MENU_LINKS = [
@@ -34,6 +35,14 @@ export const MENU_LINKS = [
   {
     text: "Créer un montage à partir d'un template et des images",
     href: ROUTES.createMontage
+  },
+  {
+    text: "Upload des images avec progressbar [Avec Interface]",
+    href: ROUTES.upload
+  },
+  {
+    text: "Modal de confirmation",
+    href: ROUTES.confirmModal
   }
 ];
 
