@@ -4,19 +4,9 @@ import { jsx } from "@emotion/react";
 import { useState } from "react";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
-import ProgressBar from "../../components/ProgressBar";
 import UploadInput from "./UploadInput";
 import { uploadImages } from "../../actions/images";
-import Typography from "../../components/Typography";
 import AddToCartModal from "./AddToCartModal";
-
-const classes = {
-  upload: {},
-  countUploadedFiles: {
-    fontSize: "18px !important",
-    marginTop: 6
-  }
-};
 
 const Upload = () => {
   const [files, setFiles] = useState([]);
@@ -72,9 +62,9 @@ const Upload = () => {
   };
 
   return (
-    <div className="flexRow justifyCenter" css={classes.upload}>
+    <div className="flexCenter">
       <UploadInput maxCount={2} onChangeFiles={handleFilesChange} />
-      <div className="m-y-20">
+      <div className="m-y-20 stretchSelf flex1">
         <div className="flexCenter" onClick={toggleConfirmationDialog}>
           <Button text="Confimer" />
         </div>

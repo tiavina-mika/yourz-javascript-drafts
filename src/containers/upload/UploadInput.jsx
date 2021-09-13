@@ -3,7 +3,6 @@
 import { jsx } from "@emotion/react";
 import { useState } from "react";
 
-import { css } from "@emotion/css";
 import { Upload as AntdUpload } from "antd";
 import PropTypes from "prop-types";
 
