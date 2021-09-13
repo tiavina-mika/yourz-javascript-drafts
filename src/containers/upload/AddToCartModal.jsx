@@ -34,6 +34,9 @@ const AddToCartModal = ({
   filesCount,
   status
 }) => {
+  // ----------------------------------------- //
+  // -- upload images progressbar component -- //
+  // ----------------------------------------- //
   const uploadDetails = (
     <div className="stretchSelf">
       <ProgressBar percent={percentage} />
@@ -47,7 +50,10 @@ const AddToCartModal = ({
     </div>
   );
 
-  const addToCardTitle = (
+  // ----------------------------------------- //
+  // -------------- modal title -------------- //
+  // ----------------------------------------- //
+  const addToCartTitle = (
     <div className="flexCenter m-b-20">
       <div className="flexRow alignCenter" css={classes.loadingButton}>
         {status.loading ? (
@@ -64,7 +70,7 @@ const AddToCartModal = ({
     <Modal
       open={open}
       content={uploadDetails}
-      title={addToCardTitle}
+      title={addToCartTitle}
       description={status.message}
       buttonOkText="Continuer vers le panier"
       buttonCancelText="Je vérifie"

@@ -5,9 +5,14 @@ import { cx } from "@emotion/css";
 import { LoadingOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 
+import { mobile } from "./Responsive";
+
 const classes = {
   loading: {
-    height: 300
+    height: 500,
+    [mobile]: {
+      height: 300
+    }
   },
   icon: ({ theme, size }) => ({
     color: theme.colors.dark,
