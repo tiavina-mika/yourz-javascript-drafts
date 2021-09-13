@@ -59,14 +59,18 @@ const Modal = ({
     <AntdModal
       css={classes.modal}
       title={
-        <Typography
-          gutterBottom={false}
-          alignment="center"
-          variant="title"
-          level={3}
-        >
-          {title}
-        </Typography>
+        typeof title !== "string" ? (
+          title
+        ) : (
+          <Typography
+            gutterBottom={false}
+            alignment="center"
+            variant="title"
+            level={3}
+          >
+            {title}
+          </Typography>
+        )
       }
       centered
       visible={open}
@@ -121,7 +125,7 @@ const Modal = ({
 
 Modal.propTypes = {
   contentAlignment: PropTypes.oneOf(["center", "left", "right"]),
-  title: PropTypes.string,
+  title: PropTypes.any,
   onOk: PropTypes.func,
   onCancel: PropTypes.func,
   className: PropTypes.any,

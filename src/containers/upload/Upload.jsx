@@ -8,6 +8,7 @@ import ProgressBar from "../../components/ProgressBar";
 import UploadInput from "./UploadInput";
 import { uploadImages } from "../../actions/images";
 import Typography from "../../components/Typography";
+import AddToCartModal from "./AddToCartModal";
 
 const classes = {
   upload: {},
@@ -24,6 +25,12 @@ const Upload = () => {
 
   const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
   const [openProgressDialog, setOpenProgressDialog] = useState(false);
+  const [addToCartStatus, setAddToCartStatus] = useState({
+    message:
+      "Vos photos sont en train d`'être téléchargées. Cela peut prendre quelques minutes...",
+    loading: true,
+    title: "Ajout au panier"
+  });
 
   const toggleConfirmationDialog = () =>
     setOpenConfirmationDialog((prev) => !prev);
@@ -37,38 +44,32 @@ const Upload = () => {
         setCountFilesUploaded
       );
 
-      setFiles(newFiles);
-      toggleProgressDialog();
+      return newFiles;
+      // toggleProgressDialog();
     } catch (err) {
       console.log("error", err.response);
       setPercentage(0);
     }
   };
 
-  // console.log("files", files);
-
-  const onConfirm = () => {
+  const onConfirm = async () => {
     toggleConfirmationDialog();
-    uploadFile();
+    toggleProgressDialog();
+    const files = await uploadFile();
+    setFiles(files);
+
+    setAddToCartStatus((prev) => ({
+      ...prev,
+      message: "Votre création a été envoyée avec succès",
+      loading: false,
+      title: "Produit ajouté au panier"
+    }));
     toggleProgressDialog();
   };
 
   const handleFilesChange = (selectedFiles) => {
     setFiles(selectedFiles);
   };
-
-  const uploadDetails = (
-    <div className="stretchSelf">
-      <ProgressBar percent={percentage} />
-      <Typography
-        theme="active"
-        className="flexCenter"
-        css={classes.countUploadedFiles}
-      >
-        {countFilesUploaded} / {files.length}
-      </Typography>
-    </div>
-  );
 
   return (
     <div className="flexRow justifyCenter" css={classes.upload}>
@@ -86,7 +87,7 @@ const Upload = () => {
           onCancel={toggleConfirmationDialog}
           onOk={onConfirm}
         />
-        <Modal
+        {/* <Modal
           open={openProgressDialog}
           content={uploadDetails}
           title="Faîtes vous plaisir"
@@ -97,6 +98,14 @@ const Upload = () => {
           contentAlignment="left"
           disabled
           width={450}
+        /> */}
+        <AddToCartModal
+          // open={true}
+          open={openProgressDialog}
+          percentage={percentage}
+          countFilesUploaded={countFilesUploaded}
+          filesCount={files.length}
+          status={addToCartStatus}
         />
       </div>
     </div>

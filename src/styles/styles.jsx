@@ -484,6 +484,9 @@ const getGlobalStyles = () => css`
   .m-b-15 {
     margin-bottom: 15px;
   }
+  .m-b-20 {
+    margin-bottom: 15px;
+  }
   .m-b-25 {
     margin-bottom: 25px;
   }
